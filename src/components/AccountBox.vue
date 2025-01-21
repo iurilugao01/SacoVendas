@@ -67,6 +67,7 @@ img {
   height: 60px;
   margin-left: 24px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .bottom-line {
@@ -80,7 +81,7 @@ img {
   background-color: #252525;
   padding: 10px 20px;
   border-radius: 8px;
-  flex: 1; /* Faz com que as caixas tenham o mesmo tamanho */
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -36,7 +36,7 @@ export default {
       </li>
       <li class="more-menu">
         <a href="#">
-          <span class="icon"><i class="bi bi-plus"></i></span>
+          <span class="icon"><i class="bi bi-plus-circle-dotted"></i></span>
           <span class="txt-link">Mais</span>
         </a>
       </li>
@@ -51,8 +51,6 @@ export default {
 </template>
 
 <style scoped>
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
-
 * {
   margin: 0;
   padding: 0;
