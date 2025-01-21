@@ -1,12 +1,25 @@
 <script>
 export default {
   name: "GlobalSidebar",
+  data() {
+    return {
+      expanded: false,
+    };
+  },
+  methods: {
+    toggleExpand() {
+      this.expanded = !this.expanded;
+    },
+  },
 };
 </script>
 
 <template>
-  <nav>
-    <div class="btn-expand"><i class="bi bi-list-task"></i></div>
+  <nav :class="{ expanded: expanded }">
+    <div class="btn-expand">
+      <i class="bi bi-list-task" @click="toggleExpand()"></i>
+      <span class="nav-header">Saco Vendas</span>
+    </div>
 
     <ul>
       <li class="home-menu">
@@ -73,10 +86,22 @@ nav {
 nav:hover {
   width: 300px;
 }
+.expanded {
+  width: 300px;
+}
+
+.nav-header {
+  font-size: 20px;
+  margin-left: 20px;
+  color: #0aa533;
+  position: absolute;
+  white-space: nowrap;
+}
 
 .btn-expand {
   width: 100%;
-  padding-left: 10px;
+  padding: 20px 4%;
+  margin-left: 10px;
 }
 
 .btn-expand > i {
