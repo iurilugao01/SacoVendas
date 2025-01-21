@@ -83,9 +83,7 @@ nav {
   top: 0;
   left: 0;
 }
-nav:hover {
-  width: 300px;
-}
+nav:hover,
 .expanded {
   width: 300px;
 }
