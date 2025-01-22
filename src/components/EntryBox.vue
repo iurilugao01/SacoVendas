@@ -28,9 +28,14 @@ export default {
         {
           tittle: "Alerta! pagamentos pendentes",
           type: "alert",
-          viewd: false,
+          viewed: false,
           content:
             "ainda nao foi emitido o pagamento do lote de 32000 sacos de lixo de medio porte",
+        },
+        {
+          tittle: "Novos produtos adicionados",
+          viewed: false,
+          content: "ienvidnvcsdncosdncodskmcakmcaos",
         },
       ],
     };
@@ -75,8 +80,8 @@ export default {
                   'bi-box': notify.type === 'delivery',
                   'bi-book': notify.type === 'message',
                   'bi-exclamation-circle-fill': notify.type === 'alert',
+                  'bi-info-circle': !notify.type,
                 }"
-                v-if="notify.type"
               ></i>
 
               <span>{{ notify.tittle }}</span>
