@@ -3,27 +3,58 @@ export default {
   name: "EntryBox",
   data() {
     return {
+      hoveredIndexState: new Set(),
+      notifyContentState: new Set(),
+
       notifys: [
         {
-          tittle: "Notificação de teste",
+          tittle: "Seu pedido saiu para entrega",
           type: "delivery",
           viewed: false,
           content: "lorem",
         },
         {
-          tittle: "Notificação de teste",
+          tittle: "Adição da caixa de entrada",
           type: "new",
-          viewed: true,
-          content: "",
-        },
-        {
-          tittle: "Notificação de teste",
-          type: "message",
           viewed: false,
           content: "",
         },
+        {
+          tittle: "Mensagem do fornecedor",
+          type: "message",
+          viewed: false,
+          content: "lorem",
+        },
+        {
+          tittle: "Alerta! pagamentos pendentes",
+          type: "alert",
+          viewd: false,
+          content:
+            "ainda nao foi emitido o pagamento do lote de 32000 sacos de lixo de medio porte",
+        },
       ],
     };
+  },
+  methods: {
+    toggleNotifyViewd(index) {
+      this.notifys[index].viewed = true;
+    },
+
+    onArrowHover(index) {
+      this.hoveredIndexState.add(index);
+    },
+    onArrowHoverLeave(index) {
+      this.hoveredIndexState.delete(index);
+    },
+
+    showNotifyContent(index) {
+      if (!this.notifyContentState.has(index)) {
+        this.notifyContentState.add(index);
+        return;
+      }
+
+      this.notifyContentState.delete(index);
+    },
   },
 };
 </script>
@@ -37,16 +68,39 @@ export default {
         <div class="notify-msg" v-for="(notify, index) in notifys" :key="index">
           <div class="notify-header">
             <div>
-              <i class="bi bi-star" v-if="notify.type === 'new'"></i>
-              <i class="bi bi-box" v-if="notify.type === 'delivery'"></i>
-              <i class="bi bi-book" v-if="notify.type === 'message'"></i>
+              <i
+                :class="{
+                  bi: true,
+                  'bi-star': notify.type === 'new',
+                  'bi-box': notify.type === 'delivery',
+                  'bi-book': notify.type === 'message',
+                  'bi-exclamation-circle-fill': notify.type === 'alert',
+                }"
+                v-if="notify.type"
+              ></i>
 
               <span>{{ notify.tittle }}</span>
             </div>
             <div>
-              <i class="bi bi-caret-down" v-if="notify.content"></i>
-              <i class="bi bi-lightbulb-fill" v-if="!notify.viewed"></i>
+              <i
+                class="bi bi-lightbulb-fill"
+                v-if="!notify.viewed && notify.content"
+              ></i>
+              <i
+                :class="{
+                  bi: true,
+                  'bi-caret-down': !hoveredIndexState.has(index),
+                  'bi-caret-down-fill': hoveredIndexState.has(index),
+                }"
+                @click="toggleNotifyViewd(index), showNotifyContent(index)"
+                @mouseenter="onArrowHover(index)"
+                @mouseleave="onArrowHoverLeave(index)"
+                v-if="notify.content"
+              ></i>
             </div>
+          </div>
+          <div class="notify-content" v-if="notifyContentState.has(index)">
+            <span class="notify-content-txt">{{ notify.content }}</span>
           </div>
         </div>
       </div>
@@ -94,12 +148,40 @@ i {
 
 .notify-msg {
   display: flex;
+  flex-direction: column;
   background-color: #181717;
   width: 100%;
-  height: 6vh;
+  height: auto;
+
   padding: 12px;
   border-radius: 16px;
   margin-bottom: 12px;
+}
+
+.notify-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+
+.notify-content {
+  margin-top: 12px;
+  margin-left: 24px;
+  width: 80%;
+}
+
+.bi-lightbulb-fill {
+  color: #d0ff00;
+}
+
+.bi-exclamation-circle-fill {
+  color: #c51e01;
+}
+
+.bi-caret-down,
+.bi-caret-down-fill {
+  cursor: pointer;
+  font-size: 20px;
 }
 </style>
