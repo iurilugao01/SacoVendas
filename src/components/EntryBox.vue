@@ -94,8 +94,18 @@ export default {
               <i
                 :class="{
                   bi: true,
-                  'bi-caret-down': !hoveredIndexState.has(index),
-                  'bi-caret-down-fill': hoveredIndexState.has(index),
+                  'bi-caret-down':
+                    !hoveredIndexState.has(index) &&
+                    !notifyContentState.has(index),
+                  'bi-caret-down-fill':
+                    hoveredIndexState.has(index) &&
+                    !notifyContentState.has(index),
+                  'bi-caret-up':
+                    !hoveredIndexState.has(index) &&
+                    notifyContentState.has(index),
+                  'bi-caret-up-fill':
+                    hoveredIndexState.has(index) &&
+                    notifyContentState.has(index),
                 }"
                 @click="toggleNotifyViewd(index), showNotifyContent(index)"
                 @mouseenter="onArrowHover(index)"
@@ -185,7 +195,9 @@ i {
 }
 
 .bi-caret-down,
-.bi-caret-down-fill {
+.bi-caret-down-fill,
+.bi-caret-up-fill,
+.bi-caret-up {
   cursor: pointer;
   font-size: 20px;
 }

@@ -1,6 +1,26 @@
 <script>
+import DeliveryInfo from "./DeliveryInfo.vue";
 export default {
   name: "AccountBox",
+  components: {
+    DeliveryInfo,
+  },
+
+  data() {
+    return {
+      showDeliveryInfo: false,
+      showMoneyInfo: false,
+    };
+  },
+
+  methods: {
+    toggleShowDeliveryInfo() {
+      this.showDeliveryInfo = !this.showDeliveryInfo;
+    },
+    toggleShowMoneyInfo() {
+      this.showMoneyInfo = !this.showMoneyInfo;
+    },
+  },
 };
 </script>
 
@@ -16,14 +36,19 @@ export default {
     <div class="bottom-line">
       <div class="cash-box">
         <span>Saldo atual:</span>
-        <span class="more-view-btn">Vizualizar transações</span>
+        <span class="more-view-btn" @click="toggleShowMoneyInfo"
+          >Vizualizar transações</span
+        >
       </div>
       <div class="order-box">
         <span>Pedidos:</span>
-        <span class="more-view-btn">Ver mais</span>
+        <span class="more-view-btn" @click="toggleShowDeliveryInfo()"
+          >Ver mais</span
+        >
       </div>
     </div>
   </div>
+  <DeliveryInfo v-if="showDeliveryInfo" />
 </template>
 
 <style scoped>
