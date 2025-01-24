@@ -1,4 +1,5 @@
 <script>
+// import { computed } from "vue";
 import DeliveryInfo from "./DeliveryInfo.vue";
 export default {
   name: "AccountBox",
@@ -10,6 +11,12 @@ export default {
     return {
       showDeliveryInfo: false,
       showMoneyInfo: false,
+
+      userInfo: {
+        name: "John Doe",
+        gender: "M",
+        profile_img: "",
+      },
     };
   },
 
@@ -27,7 +34,7 @@ export default {
 <template>
   <div class="global-container">
     <div class="top-line">
-      <span class="welcome-txt">Bem vindo de volta Usuario!</span>
+      <span class="welcome-txt">Bem vind de volta {{ userInfo.name }}!</span>
       <img
         src="../assets/images/defaultProfileImage.jpg"
         alt="Foto de perfil"
