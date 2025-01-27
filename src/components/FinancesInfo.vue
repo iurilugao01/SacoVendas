@@ -1,36 +1,9 @@
 <script>
 export default {
   name: "DeliveryInfo",
-  data() {
-    return {
-      deliverys: [
-        {
-          name: "geladeira",
-          value: 3000,
-          status: "",
-          description: "definitvamente uma geladeira que gela coisas",
-          img: "",
-        },
-        {
-          name: "fogao",
-          value: 5000,
-          status: "",
-          description: "definitivamente um fogao que esquenta coisas",
-          img: "",
-        },
-        {
-          name: "armario",
-          value: 1000,
-          status: "",
-          description: "Com certeza um armario que serve pra guardar coisas",
-          img: "",
-        },
-      ],
-    };
-  },
   methods: {
     closeBox() {
-      this.$emit("close-delivery-info");
+      this.$emit("close-transaction-info");
     },
   },
 };
@@ -40,7 +13,7 @@ export default {
   <div class="centered-container">
     <div class="delivery-info-container">
       <div class="delivery-info-top">
-        <span>Seus Pedidos</span>
+        <span>Historico de transações</span>
         <i class="bi bi-x-circle" @click="closeBox()"></i>
       </div>
     </div>
