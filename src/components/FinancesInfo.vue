@@ -1,15 +1,26 @@
 <script>
 export default {
   name: "DeliveryInfo",
+  methods: {
+    onClickOutside() {
+      this.$emit("close-transaction-info");
+    },
+  },
 };
 </script>
 
 <template>
-  <div class="centered-container">
+  <div v-click-outside="onClickOutside" class="centered-container">
     <div class="delivery-info-container">
       <div class="delivery-info-top">
         <span>Historico de transações</span>
-        <i class="bi bi-x-circle" @click="$emit('close-transaction-info')"></i>
+        <div>
+          <!--tag span indicando esc-->
+          <i
+            class="bi bi-x-circle"
+            @click="$emit('close-transaction-info')"
+          ></i>
+        </div>
       </div>
     </div>
   </div>

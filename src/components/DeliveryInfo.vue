@@ -38,11 +38,16 @@ export default {
       ],
     };
   },
+  methods: {
+    onClickOutside() {
+      this.$emit("close-delivery-info");
+    },
+  },
 };
 </script>
 
 <template>
-  <div class="centered-container">
+  <div v-click-outside="onClickOutside" class="centered-container">
     <div class="delivery-info-container">
       <div class="delivery-info-top">
         <span>Seus Pedidos</span>

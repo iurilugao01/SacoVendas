@@ -2,11 +2,16 @@
 export default {
   name: "DeliveryDescription",
   props: ["productImg", "productAlt"],
+  methods: {
+    onClickOutside() {
+      this.$emit("close-delivery-description");
+    },
+  },
 };
 </script>
 
 <template>
-  <div class="centered-description">
+  <div v-click-outside="onClickOutside" class="centered-description">
     <div class="delivery-description-container">
       <div class="delivery-description-top">
         <span>Informações do pedido</span>

@@ -1,6 +1,7 @@
 <script>
 import DeliveryInfo from "./DeliveryInfo.vue";
 import FinancesInfo from "./FinancesInfo.vue";
+
 export default {
   name: "AccountBox",
   components: {
@@ -97,11 +98,13 @@ export default {
       </div>
     </div>
   </div>
-  <DeliveryInfo
-    ref="deliveryModal"
-    @close-delivery-info="showDeliveryInfo = false"
-    v-if="showDeliveryInfo"
-  />
+  <Transition>
+    <DeliveryInfo
+      ref="deliveryModal"
+      @close-delivery-info="showDeliveryInfo = false"
+      v-if="showDeliveryInfo"
+    />
+  </Transition>
   <FinancesInfo
     ref="financesModal"
     @close-transaction-info="showMoneyInfo = false"
@@ -178,7 +181,6 @@ img {
   cursor: pointer;
 }
 
-/* Estilos para garantir que os modais apareçam no topo */
 .delivery-modal,
 .finances-modal {
   position: absolute;
@@ -187,6 +189,6 @@ img {
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
-  z-index: 10; /* Garante que os modais fiquem acima de outros elementos */
+  z-index: 10;
 }
 </style>
