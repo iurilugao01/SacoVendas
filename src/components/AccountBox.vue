@@ -21,38 +21,6 @@ export default {
     };
   },
 
-  methods: {
-    closeAllModals() {
-      this.showDeliveryInfo = false;
-      this.showMoneyInfo = false;
-    },
-    handleKeyPress(event) {
-      if (event.key === "Escape") {
-        this.closeAllModals();
-      }
-    },
-    /* handleClickOutside(event) {
-      if (
-        this.$refs.deliveryModal &&
-        !this.$refs.deliveryModal.contains(event.target) &&
-        this.$refs.financesModal &&
-        !this.$refs.financesModal.contains(event.target)
-      ) {
-        this.closeAllModals();
-      }
-    }, */
-  },
-
-  mounted() {
-    document.addEventListener("keydown", this.handleKeyPress);
-    document.addEventListener("click", this.handleClickOutside);
-  },
-
-  beforeUnmount() {
-    document.removeEventListener("keydown", this.handleKeyPress);
-    document.removeEventListener("click", this.handleClickOutside);
-  },
-
   computed: {
     welcomeMessage() {
       if (this.userInfo.gender === "F") {
@@ -105,11 +73,13 @@ export default {
       v-if="showDeliveryInfo"
     />
   </Transition>
-  <FinancesInfo
-    ref="financesModal"
-    @close-transaction-info="showMoneyInfo = false"
-    v-if="showMoneyInfo"
-  />
+  <Transition>
+    <FinancesInfo
+      ref="financesModal"
+      @close-transaction-info="showMoneyInfo = false"
+      v-if="showMoneyInfo"
+    />
+  </Transition>
 </template>
 
 <style scoped>
@@ -190,5 +160,15 @@ img {
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
   z-index: 10;
+}
+
+.v-enter-active,
+.v-leaver-active {
+  transition: all 0.2s;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
