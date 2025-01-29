@@ -1,8 +1,15 @@
 <script>
+import DeliveryDescription from "./DeliveryDescription.vue";
+
 export default {
   name: "DeliveryInfo",
+  components: {
+    DeliveryDescription,
+  },
   data() {
     return {
+      deliveryDescriptionBox: null,
+
       deliverys: [
         {
           name: "geladeira",
@@ -10,6 +17,7 @@ export default {
           status: "",
           description: "definitvamente uma geladeira que gela coisas",
           img: "",
+          alt: "",
         },
         {
           name: "fogao",
@@ -17,6 +25,7 @@ export default {
           status: "",
           description: "definitivamente um fogao que esquenta coisas",
           img: "",
+          alt: "",
         },
         {
           name: "armario",
@@ -24,14 +33,10 @@ export default {
           status: "",
           description: "Com certeza um armario que serve pra guardar coisas",
           img: "",
+          alt: "",
         },
       ],
     };
-  },
-  methods: {
-    closeBox() {
-      this.$emit("close-delivery-info");
-    },
   },
 };
 </script>
@@ -41,8 +46,42 @@ export default {
     <div class="delivery-info-container">
       <div class="delivery-info-top">
         <span>Seus Pedidos</span>
-        <i class="bi bi-x-circle" @click="closeBox()"></i>
+        <i class="bi bi-x-circle" @click="$emit('close-delivery-info')"></i>
       </div>
+      <table>
+        <tr>
+          <th>Nome</th>
+          <th>Valor</th>
+          <th>Status</th>
+          <th class="more-collum">Mais</th>
+        </tr>
+        <tr v-for="(delivery, index) in deliverys" :key="index">
+          <td>{{ delivery.name ? delivery.name : "ERRO" }}</td>
+          <td>{{ delivery.value ? delivery.value : "ERRO" }}</td>
+          <td>{{ delivery.status ? delivery.status : "ERRO" }}</td>
+
+          <td class="more-collum">
+            <i
+              class="bi bi-plus-square"
+              @click="
+                deliveryDescriptionBox =
+                  deliveryDescriptionBox === index
+                    ? false
+                    : (deliveryDescriptionBox = index)
+              "
+            ></i>
+          </td>
+
+          <DeliveryDescription
+            @close-delivery-description="deliveryDescriptionBox = null"
+            v-if="deliveryDescriptionBox === index"
+            :productImg="delivery.img"
+            :productAlt="delivery.alt"
+          >
+            {{ index }}
+          </DeliveryDescription>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -75,5 +114,35 @@ export default {
 .bi-x-circle {
   font-size: 24px;
   cursor: pointer;
+}
+
+table {
+  width: 100%;
+  background-color: #0aa533;
+  border-radius: 12px;
+  border-spacing: 2px;
+}
+
+th,
+td {
+  height: 40px;
+}
+
+th {
+  background-color: #252525;
+}
+
+td {
+  background-color: #000;
+  text-align: center;
+}
+
+.more-collum {
+  max-width: 20px;
+}
+
+.bi-plus-square {
+  cursor: pointer;
+  font-size: 20px;
 }
 </style>

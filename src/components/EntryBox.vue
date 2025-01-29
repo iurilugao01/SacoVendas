@@ -40,27 +40,6 @@ export default {
       ],
     };
   },
-  methods: {
-    toggleNotifyViewd(index) {
-      this.notifys[index].viewed = true;
-    },
-
-    onArrowHover(index) {
-      this.hoveredIndexState.add(index);
-    },
-    onArrowHoverLeave(index) {
-      this.hoveredIndexState.delete(index);
-    },
-
-    showNotifyContent(index) {
-      if (!this.notifyContentState.has(index)) {
-        this.notifyContentState.add(index);
-        return;
-      }
-
-      this.notifyContentState.delete(index);
-    },
-  },
 };
 </script>
 
@@ -107,9 +86,14 @@ export default {
                     hoveredIndexState.has(index) &&
                     notifyContentState.has(index),
                 }"
-                @click="toggleNotifyViewd(index), showNotifyContent(index)"
-                @mouseenter="onArrowHover(index)"
-                @mouseleave="onArrowHoverLeave(index)"
+                @click="
+                  notifys[index].viewed = true;
+                  notifyContentState.delete(index)
+                    ? notifyContentState.has(index)
+                    : notifyContentState.add(index);
+                "
+                @mouseenter="hoveredIndexState.add(index)"
+                @mouseleave="hoveredIndexState.delete(index)"
                 v-if="notify.content"
               ></i>
             </div>

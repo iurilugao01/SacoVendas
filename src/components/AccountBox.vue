@@ -60,19 +60,6 @@ export default {
       return "Bem vindo de volta";
     },
   },
-
-  watch: {
-    showMoneyInfo(newV) {
-      if (newV) {
-        this.showDeliveryInfo = false;
-      }
-    },
-    showDeliveryInfo(newV) {
-      if (newV) {
-        this.showMoneyInfo = false;
-      }
-    },
-  },
 };
 </script>
 
@@ -88,7 +75,12 @@ export default {
     <div class="bottom-line">
       <div class="cash-box">
         <span>Saldo atual:</span>
-        <span class="more-view-btn" @click="showMoneyInfo = !showMoneyInfo"
+        <span
+          class="more-view-btn"
+          @click="
+            showMoneyInfo = !showMoneyInfo;
+            showDeliveryInfo = false;
+          "
           >Vizualizar transações</span
         >
       </div>
@@ -96,7 +88,10 @@ export default {
         <span>Pedidos:</span>
         <span
           class="more-view-btn"
-          @click="showDeliveryInfo = !showDeliveryInfo"
+          @click="
+            showDeliveryInfo = !showDeliveryInfo;
+            showMoneyInfo = false;
+          "
           >Ver mais</span
         >
       </div>

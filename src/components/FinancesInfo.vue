@@ -1,11 +1,6 @@
 <script>
 export default {
   name: "DeliveryInfo",
-  methods: {
-    closeBox() {
-      this.$emit("close-transaction-info");
-    },
-  },
 };
 </script>
 
@@ -14,7 +9,7 @@ export default {
     <div class="delivery-info-container">
       <div class="delivery-info-top">
         <span>Historico de transações</span>
-        <i class="bi bi-x-circle" @click="closeBox()"></i>
+        <i class="bi bi-x-circle" @click="$emit('close-transaction-info')"></i>
       </div>
     </div>
   </div>
