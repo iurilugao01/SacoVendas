@@ -2,6 +2,7 @@
 import AccountBox from "./components/AccountBox.vue";
 import EntryBox from "./components/EntryBox.vue";
 import GlobalSidebar from "./components/GlobalSidebar.vue";
+import SalesChart from "./components/SalesChart.vue";
 
 export default {
   name: "App",
@@ -9,6 +10,7 @@ export default {
     GlobalSidebar,
     AccountBox,
     EntryBox,
+    SalesChart,
   },
 };
 </script>
@@ -19,6 +21,8 @@ export default {
   <AccountBox />
 
   <EntryBox />
+
+  <SalesChart />
 </template>
 
 <style>
