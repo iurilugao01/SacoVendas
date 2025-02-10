@@ -73,18 +73,9 @@ export default {
               <i
                 :class="{
                   bi: true,
-                  'bi-caret-down':
-                    !hoveredIndexState.has(index) &&
-                    !notifyContentState.has(index),
-                  'bi-caret-down-fill':
-                    hoveredIndexState.has(index) &&
-                    !notifyContentState.has(index),
-                  'bi-caret-up':
-                    !hoveredIndexState.has(index) &&
-                    notifyContentState.has(index),
-                  'bi-caret-up-fill':
-                    hoveredIndexState.has(index) &&
-                    notifyContentState.has(index),
+                  'bi-caret-down': !hoveredIndexState.has(index),
+                  'bi-caret-down-fill': hoveredIndexState.has(index),
+                  'rotate-icon': notifyContentState.has(index),
                 }"
                 @click="
                   notifys[index].viewed = true;
@@ -179,10 +170,14 @@ i {
 }
 
 .bi-caret-down,
-.bi-caret-down-fill,
-.bi-caret-up-fill,
-.bi-caret-up {
+.bi-caret-down-fill {
+  display: inline-block;
   cursor: pointer;
   font-size: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.rotate-icon {
+  transform: rotate(0.5turn);
 }
 </style>
