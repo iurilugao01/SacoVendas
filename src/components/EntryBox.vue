@@ -1,63 +1,3 @@
-<template>
-  <div class="global-container">
-    <div class="top-line">
-      <i class="bi bi-envelope"></i>
-      <span>Caixa de entrada</span>
-      <div class="entry-box">
-        <div v-for="(notify, index) in notifys" :key="index" class="notify-msg">
-          <div class="notify-header">
-            <div>
-              <i
-                :class="{
-                  bi: true,
-                  'bi-star': notify.type === 'new',
-                  'bi-box': notify.type === 'delivery',
-                  'bi-book': notify.type === 'message',
-                  'bi-exclamation-circle-fill': notify.type === 'alert',
-                  'bi-info-circle': !notify.type,
-                }"
-              ></i>
-              <span>{{ notify.tittle }}</span>
-            </div>
-            <div>
-              <i
-                class="bi bi-lightbulb-fill"
-                v-if="!notify.viewed && notify.content"
-              ></i>
-              <i
-                :class="{
-                  bi: true,
-                  'bi-caret-down': !hoveredIndexState.has(index),
-                  'bi-caret-down-fill': hoveredIndexState.has(index),
-                  'rotate-icon': notifyContentState.has(index),
-                }"
-                @click="toggleNotify(index, notify)"
-                @mouseenter="hoveredIndexState.add(index)"
-                @mouseleave="hoveredIndexState.delete(index)"
-                v-if="notify.content"
-              ></i>
-            </div>
-          </div>
-
-          <transition
-            name="expand"
-            @before-enter="beforeEnter"
-            @enter="enter"
-            @after-enter="afterEnter"
-            @before-leave="beforeLeave"
-            @leave="leave"
-            @after-leave="afterLeave"
-          >
-            <div class="notify-content" v-if="notifyContentState.has(index)">
-              <span class="notify-content-txt">{{ notify.content }}</span>
-            </div>
-          </transition>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script>
 export default {
   name: "EntryBox",
@@ -130,6 +70,66 @@ export default {
   },
 };
 </script>
+
+<template>
+  <div class="global-container">
+    <div class="top-line">
+      <i class="bi bi-envelope"></i>
+      <span>Caixa de entrada</span>
+      <div class="entry-box">
+        <div v-for="(notify, index) in notifys" :key="index" class="notify-msg">
+          <div class="notify-header">
+            <div>
+              <i
+                :class="{
+                  bi: true,
+                  'bi-star': notify.type === 'new',
+                  'bi-box': notify.type === 'delivery',
+                  'bi-book': notify.type === 'message',
+                  'bi-exclamation-circle-fill': notify.type === 'alert',
+                  'bi-info-circle': !notify.type,
+                }"
+              ></i>
+              <span>{{ notify.tittle }}</span>
+            </div>
+            <div>
+              <i
+                class="bi bi-lightbulb-fill"
+                v-if="!notify.viewed && notify.content"
+              ></i>
+              <i
+                :class="{
+                  bi: true,
+                  'bi-caret-down': !hoveredIndexState.has(index),
+                  'bi-caret-down-fill': hoveredIndexState.has(index),
+                  'rotate-icon': notifyContentState.has(index),
+                }"
+                @click="toggleNotify(index, notify)"
+                @mouseenter="hoveredIndexState.add(index)"
+                @mouseleave="hoveredIndexState.delete(index)"
+                v-if="notify.content"
+              ></i>
+            </div>
+          </div>
+
+          <transition
+            name="expand"
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @after-enter="afterEnter"
+            @before-leave="beforeLeave"
+            @leave="leave"
+            @after-leave="afterLeave"
+          >
+            <div class="notify-content" v-if="notifyContentState.has(index)">
+              <span class="notify-content-txt">{{ notify.content }}</span>
+            </div>
+          </transition>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 * {
