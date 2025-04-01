@@ -1,28 +1,14 @@
 <script>
-import AccountBox from "./components/AccountBox.vue";
-import EntryBox from "./components/EntryBox.vue";
-import GlobalSidebar from "./components/GlobalSidebar.vue";
-import SalesChart from "./components/SalesChart.vue";
-
 export default {
   name: "App",
-  components: {
-    GlobalSidebar,
-    AccountBox,
-    EntryBox,
-    SalesChart,
-  },
+  components: {},
 };
 </script>
 
 <template>
-  <GlobalSidebar />
-
-  <AccountBox />
-
-  <EntryBox />
-
-  <SalesChart />
+  <main>
+    <RouterView />
+  </main>
 </template>
 
 <style>
