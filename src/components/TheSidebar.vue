@@ -12,35 +12,12 @@ const expanded = ref(false);
     </div>
 
     <ul>
-      <li class="">
-        <a href="#">
-          <span class="icon"><i class="bi bi-house"></i></span>
-          <span class="txt-link">Home</span>
-        </a>
-      </li>
-      <li class="">
-        <a href="#">
-          <span class="icon"><i class="bi bi-search"></i></span>
-          <span class="txt-link">Explorar</span>
-        </a>
-      </li>
-      <li class="">
-        <a href="#">
-          <span class="icon"><i class="bi bi-plus-circle-dotted"></i></span>
-          <span class="txt-link">Mais</span>
-        </a>
-      </li>
-      <li class="">
-        <a href="#">
-          <span class="icon"><i class="bi bi-person-raised-hand"></i></span>
-          <span class="txt-link">Ajuda</span>
-        </a>
-      </li>
+      <slot></slot>
     </ul>
   </nav>
 </template>
 
-<style scoped>
+<style>
 * {
   margin: 0;
   padding: 0;
