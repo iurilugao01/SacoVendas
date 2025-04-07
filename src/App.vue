@@ -1,6 +1,26 @@
-<script setup></script>
+<script setup>
+import { useRoute } from "vue-router";
+
+import Sidebar from "@/components/TheSidebar.vue";
+import Naviten from "@/components/AppNaviten.vue";
+import Topbar from "./components/TheTopbar.vue";
+
+const verifyRoutes = () => {
+  const routes = ["/login", "/register"];
+  return !routes.includes(useRoute().path);
+};
+</script>
 
 <template>
+  <Topbar></Topbar>
+
+  <Sidebar v-if="verifyRoutes()">
+    <Naviten icon="bi-house" link="/" content="Home" />
+    <Naviten icon="bi-search" link="/" content="Explorar" />
+    <Naviten icon="bi-plus-circle" link="/" content="Mais" />
+    <Naviten icon="bi-person-raised-hand" link="/" content="Ajuda" />
+  </Sidebar>
+
   <main>
     <RouterView />
   </main>

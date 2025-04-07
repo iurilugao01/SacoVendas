@@ -1,15 +1,21 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
-  { path: "/", component: () => import("@/views/HomeView.vue") },
-  { path: "/login", component: () => import("@/views/LoginView.vue") },
-  { path: "/register", component: () => import("@/views/RegisterView.vue") },
-
-  // {
-  //   path: "/dashboard",
-  //   component: Dashboard,
-  //   meta: { requiresAuth: true },
-  // },
+  {
+    path: "/",
+    name: "home",
+    component: () => import("@/views/HomeView.vue"),
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("@/views/LoginView.vue"),
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: () => import("@/views/RegisterView.vue"),
+  },
 ];
 
 const router = createRouter({
