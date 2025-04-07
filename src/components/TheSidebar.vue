@@ -1,46 +1,36 @@
-<script>
-export default {
-  name: "GlobalSidebar",
-  data() {
-    return {
-      expanded: false,
-    };
-  },
-  methods: {
-    toggleExpand() {
-      this.expanded = !this.expanded;
-    },
-  },
-};
+<script setup>
+import { ref } from "vue";
+
+const expanded = ref(false);
 </script>
 
 <template>
   <nav :class="{ expanded: expanded }">
     <div class="btn-expand">
-      <i class="bi bi-list-task" @click="toggleExpand()"></i>
+      <i class="bi bi-list-task" @click="expanded = !expanded"></i>
       <span class="nav-header">Saco Vendas</span>
     </div>
 
     <ul>
-      <li class="home-menu">
+      <li class="">
         <a href="#">
           <span class="icon"><i class="bi bi-house"></i></span>
           <span class="txt-link">Home</span>
         </a>
       </li>
-      <li class="explore-menu">
+      <li class="">
         <a href="#">
           <span class="icon"><i class="bi bi-search"></i></span>
           <span class="txt-link">Explorar</span>
         </a>
       </li>
-      <li class="more-menu">
+      <li class="">
         <a href="#">
           <span class="icon"><i class="bi bi-plus-circle-dotted"></i></span>
           <span class="txt-link">Mais</span>
         </a>
       </li>
-      <li class="help-menu">
+      <li class="">
         <a href="#">
           <span class="icon"><i class="bi bi-person-raised-hand"></i></span>
           <span class="txt-link">Ajuda</span>
@@ -74,13 +64,10 @@ nav {
   display: flex;
   flex-direction: column;
   box-shadow: 3px 0 0 #0aa533;
-
   overflow: hidden;
   transition: 0.5s;
-  position: fixed;
-  top: 0;
-  left: 0;
 }
+
 nav:hover,
 .expanded {
   width: 300px;
