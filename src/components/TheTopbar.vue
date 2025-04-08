@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import Notifybox from "./AppNotifybox.vue";
 
 const userInfo = {
   username: "johndoe01",
@@ -8,7 +9,9 @@ const userInfo = {
     "https://static.vecteezy.com/system/resources/thumbnails/008/442/086/small_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg",
 };
 
-const iconMouseState = ref({
+const showNotifys = ref(false);
+
+const profileIcon = ref({
   click: false,
   hover: false,
 });
@@ -17,7 +20,13 @@ const iconMouseState = ref({
 <template>
   <div class="container">
     <div class="user-info-container">
+      <div class="notify-icon">
+        <i class="bi bi-bell" @click="showNotifys = !showNotifys"></i>
+        <Notifybox v-show="showNotifys" />
+      </div>
+
       <img :src="userInfo.profileImage" alt="Foto de perfil" />
+
       <div class="user-info-content text-center text-break">
         <span class="text-white">{{ userInfo.username }}</span>
         <span class="text-white">{{ userInfo.authority }}</span>
@@ -25,19 +34,29 @@ const iconMouseState = ref({
       <i
         :class="{
           bi: true,
-          'bi-caret-down': !iconMouseState.hover,
-          'bi-caret-down-fill': iconMouseState.hover,
-          'rotate-icon': iconMouseState.click,
+          'bi-caret-down': !profileIcon.hover,
+          'bi-caret-down-fill': profileIcon.hover,
+          'rotate-icon': profileIcon.click,
         }"
-        @click="iconMouseState.click = !iconMouseState.click"
-        @mouseenter="iconMouseState.hover = true"
-        @mouseleave="iconMouseState.hover = false"
+        @click="profileIcon.click = !profileIcon.click"
+        @mouseenter="profileIcon.hover = true"
+        @mouseleave="profileIcon.hover = false"
       ></i>
     </div>
   </div>
 </template>
 
 <style scoped>
+.notify-icon {
+  display: flex;
+  margin-right: 12px;
+  align-items: center;
+}
+
+.bi-bell {
+  font-size: 32px;
+  cursor: pointer;
+}
 .container {
   background-color: #181717;
   position: absolute;
@@ -55,7 +74,6 @@ img {
   margin-right: 12px;
   margin-top: 8px;
   border-radius: 50%;
-  cursor: pointer;
 }
 .user-info-container {
   display: flex;
