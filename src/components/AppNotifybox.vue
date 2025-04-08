@@ -4,30 +4,35 @@ const notifys = [
     tittle: "Seu pedido saiu para entrega",
     type: "delivery",
     viewed: false,
+    dateCreated: "2024-08-24 13:38:56",
     content: "lorem",
   },
   {
     tittle: "Adição da caixa de entrada",
     type: "new",
     viewed: false,
+    dateCreated: "2024-08-24 13:38:56",
     content: "",
   },
   {
     tittle: "Mensagem do fornecedor",
     type: "message",
     viewed: false,
+    dateCreated: "2024-08-24 13:38:56",
     content: "lorem",
   },
   {
     tittle: "Alerta! pagamentos pendentes",
     type: "alert",
     viewed: false,
+    dateCreated: "2024-08-24 13:38:56",
     content:
       "ainda nao foi emitido o pagamento do lote de 32000 sacos de lixo de medio porte",
   },
   {
     tittle: "Novos produtos adicionados",
     viewed: false,
+    dateCreated: "2024-08-24 13:38:56",
     content: "ienvidnvcsdncosdncodskmcakmcaos",
   },
 ];
@@ -54,6 +59,9 @@ const notifys = [
             'bi-info-circle': !notify.type,
           }"
         ></i>
+        <div class="notify-message-content">
+          <span>{{ notify.tittle }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -82,6 +90,15 @@ const notifys = [
 .mark-all-btn {
   font-size: 12px;
   cursor: pointer;
+}
+
+.notify-message {
+  display: flex;
+  flex-direction: row;
+}
+
+.notify-message-content {
+  margin-left: 12px;
 }
 
 .bi-lightbulb-fill {
