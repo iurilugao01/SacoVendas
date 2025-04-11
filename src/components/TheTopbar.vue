@@ -9,7 +9,7 @@ const userInfo = {
     "https://static.vecteezy.com/system/resources/thumbnails/008/442/086/small_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg",
 };
 
-const showNotifys = ref(false);
+const showNotifys = ref(true);
 
 const profileIcon = ref({
   click: false,

@@ -75,7 +75,7 @@ const notifys = [
 
   background-color: #252525;
   width: 16rem;
-  margin-top: 15rem;
+  margin-top: 21rem;
   right: 10rem;
   padding: 1rem;
   border-radius: 12px;
